@@ -9,8 +9,8 @@ public class InteractPlayer : MonoBehaviour
     [SerializeField, ReadOnly] private CanvasManager canvasManager;
     private float rayLength = 2;
     private RaycastHit hit;
-    private bool isActiveInteractPromptE;
-    private bool isTriggerWithObject;
+    private bool isActiveInteractPromptE; // For Optimization
+
 
     private void FixedUpdate()
     {
@@ -21,7 +21,6 @@ public class InteractPlayer : MonoBehaviour
             {
                 interactableObject.RayTriggerInteractObject();
                 isActiveInteractPromptE = true;
-                Debug.Log("aaaaaaaa");
             }
 
         }
@@ -29,10 +28,11 @@ public class InteractPlayer : MonoBehaviour
         {
             canvasManager.DeactiveInteractHelper();
             isActiveInteractPromptE = false;
-            Debug.Log("bbbbbb");
         }
 
     }
+
+    // For Optimization
     private void OnValidate()
     {
         SetRef();

@@ -11,10 +11,12 @@ public class CarPriceCalculator : MonoBehaviour
     private float priceHelper;
 
 
-    private void Start()
+    private void Awake()
     {
-        PriceCalculate();
+        carPropertiesScriptableObject = GetComponent<CarProperties>().CarPropertiesScriptableObject;
+        gameDatas = DataOperations.Instance.gameDatas;
     }
+
 
     public void PriceCalculate()
     {
@@ -24,8 +26,6 @@ public class CarPriceCalculator : MonoBehaviour
             + SpeedPriceCalculate()
             + TorqueSpeedPriceCalculate());
 
-
-        Debug.Log(carPropertiesScriptableObject.CarNetPrice);
     }
 
     private float DamagePriceCalculate()
@@ -49,17 +49,6 @@ public class CarPriceCalculator : MonoBehaviour
     {
         priceHelper = carPropertiesScriptableObject.Torquevalue * gameDatas.TorqueFactor;
         return priceHelper;
-    }
-
-    private void OnValidate()
-    {
-        SetRef();
-    }
-
-    private void SetRef()
-    {
-        carPropertiesScriptableObject = GetComponent<CarProperties>().CarPropertiesScriptableObject;
-        gameDatas = DataOperations.Instance.gameDatas;
     }
 
 

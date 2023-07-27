@@ -114,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    // For Optimization
     private void OnValidate()
     {
         SetRef();

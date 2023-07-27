@@ -19,6 +19,13 @@ public class GameDatas : ScriptableObject
     [Range(1f, 10f)]
     public float TorqueFactor;
 
+    [Header("Car List")]
+    public List<GameObject> CarList = new List<GameObject>();
+
+    [Header("Seller List")]
+    public List<GameObject> SellerList = new List<GameObject>();
+    
+
 
     [Button]
     public void ResetGameData()
@@ -29,6 +36,10 @@ public class GameDatas : ScriptableObject
         PaintFactor = 1;
         SpeedFactor = 1;
         TorqueFactor = 1;
+
+        CarList.Clear();
+        SellerList.Clear();
+
 
     }
 }

@@ -7,6 +7,7 @@ public class BaseInteract : MonoBehaviour
     [SerializeField, ReadOnly] protected CanvasManager canvasManager;
 
 
+    // For Optimization
     private void OnValidate()
     {
         SetRef();

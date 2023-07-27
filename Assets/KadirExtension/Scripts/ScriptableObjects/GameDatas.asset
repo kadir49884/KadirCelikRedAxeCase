@@ -16,3 +16,13 @@ MonoBehaviour:
   PaintFactor: 0.3
   SpeedFactor: 10
   TorqueFactor: 10
+  CarList:
+  - {fileID: 8573549319431884798, guid: f5b24270dd3a52e4180206467601e919, type: 3}
+  - {fileID: 4493774594652649359, guid: 8493f575c4fc2c341827f5191d376174, type: 3}
+  - {fileID: 5712088508789026359, guid: a333afaa2016d504aa0831cf3544672c, type: 3}
+  - {fileID: 2533337409777661332, guid: 9a667d070a973084e998d8667e8d2818, type: 3}
+  SellerList:
+  - {fileID: 7246151956043379839, guid: cf443103438b7a345961d419faa5b8ee, type: 3}
+  - {fileID: 3195181349369120197, guid: a6d933ce9ddd04743a89ff82203ad7ed, type: 3}
+  - {fileID: 6344244106300265744, guid: 917eceb1456e4d34fad8b304e9997390, type: 3}
+  - {fileID: 979722113537363321, guid: 1cb05531e7218ae4c9a27eb3df06afbf, type: 3}
