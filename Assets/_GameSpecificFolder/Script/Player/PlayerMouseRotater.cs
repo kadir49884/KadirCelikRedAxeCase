@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLooker : MonoBehaviour
+public class PlayerMouseRotater : MonoBehaviour
 {
 
     [SerializeField] private float sensX = 100f;
@@ -17,7 +17,7 @@ public class PlayerLooker : MonoBehaviour
     float multiplier = 0.01f;
 
     float xRotation = 0;
-    float yRotation = -90;
+    float yRotation = 90;
 
     void Start()
     {

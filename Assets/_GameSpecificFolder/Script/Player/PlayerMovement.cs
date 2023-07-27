@@ -42,16 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void OnValidate()
-    {
-        SetRef();
-    }
-
-    private void SetRef()
-    {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-    }
+    
 
     private void Update()
     {
@@ -118,8 +109,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
+            rb.AddForce(movementMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Acceleration);
         }
 
+    }
+
+    private void OnValidate()
+    {
+        SetRef();
+    }
+
+    private void SetRef()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 }
