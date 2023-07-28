@@ -3360,6 +3360,8 @@ Transform:
   - {fileID: 5712088509468461993}
   - {fileID: 991662636}
   - {fileID: 260761215156211183}
+  - {fileID: 3254291774668451457}
+  - {fileID: 5363369724929305176}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14352,6 +14354,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasManager: {fileID: 0}
+  gameDatas: {fileID: 11400000, guid: 04fdf6a453985e545b6512249d8738e3, type: 2}
+  interactManager: {fileID: 0}
+  rCC_CarControllerV3: {fileID: 5712088508789026344}
+  driveManager: {fileID: 0}
+  camPosInCar: {fileID: 5363369724929305176}
+  getOutPos: {fileID: 3254291774668451457}
 --- !u!54 &2563792365862390434
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14368,6 +14376,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &8266669713443141482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5363369724929305176}
+  - component: {fileID: 1089831344327246907}
+  m_Layer: 0
+  m_Name: CamPosInCar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5363369724929305176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266669713443141482}
+  m_LocalRotation: {x: 0.0000000107538645, y: 0.0000005960464, z: -0.0000000026338964,
+    w: 1}
+  m_LocalPosition: {x: -0.36400056, y: 0.49738136, z: -0.21000731}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5712088508789026346}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1089831344327246907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266669713443141482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ac4dda52c5a2942b7304920171d136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8366015922372233814
 GameObject:
   m_ObjectHideFlags: 0
@@ -24390,3 +24443,47 @@ Transform:
   m_Father: {fileID: 5248939221924323361}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8826845414433548256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3254291774668451457}
+  - component: {fileID: 793958820017448322}
+  m_Layer: 0
+  m_Name: GetOutPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3254291774668451457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826845414433548256}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5712088508789026346}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &793958820017448322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826845414433548256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d056b1bdbe55de4ea7754e4a6ab80d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

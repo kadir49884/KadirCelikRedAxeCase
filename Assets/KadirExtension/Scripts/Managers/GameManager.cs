@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	private bool IsGameStarted { get; set; }
 
 	public Action GameStart { get; set; }
+
 	public Action GameWin { get; set; }
 	public Action GameFail { get; set; }
 

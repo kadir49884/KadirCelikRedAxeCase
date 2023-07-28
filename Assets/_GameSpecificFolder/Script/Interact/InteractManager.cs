@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class InteractManager : MonoBehaviour
+public class InteractManager : Singleton<InteractManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void EnterInteractAction();
+    public event EnterInteractAction enterInteractAction;
+
+    public void RegisterEnterInteractAction(EnterInteractAction action)
     {
-        
+        enterInteractAction += action;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UnregisterEnterInteractAction(EnterInteractAction action)
     {
-        
+        enterInteractAction -= action;
     }
+
+   
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (enterInteractAction != null)
+            {
+                enterInteractAction();
+            }
+        }
+    }
+
+
+
 }

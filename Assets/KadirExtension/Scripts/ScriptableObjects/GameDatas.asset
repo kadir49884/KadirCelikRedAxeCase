@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8f7fdf5745edf4d9aaed46efa3a4ea, type: 3}
   m_Name: GameDatas
   m_EditorClassIdentifier: 
-  DamageFactor: 0.5
-  PaintFactor: 0.3
-  SpeedFactor: 10
-  TorqueFactor: 10
+  carPriceFactors:
+    DamageFactor: 0.5
+    PaintFactor: 0.3
+    SpeedFactor: 10
+    TorqueFactor: 10
+  interactMessages:
+    CarMessage: Bin
+    SellerMessage: "Konu\u015F"
   CarList:
   - {fileID: 8573549319431884798, guid: f5b24270dd3a52e4180206467601e919, type: 3}
   - {fileID: 4493774594652649359, guid: 8493f575c4fc2c341827f5191d376174, type: 3}

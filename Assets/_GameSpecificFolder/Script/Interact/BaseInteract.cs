@@ -5,19 +5,7 @@ public class BaseInteract : MonoBehaviour
 {
 
     [SerializeField, ReadOnly] protected CanvasManager canvasManager;
+    [SerializeField, ReadOnly] protected GameDatas gameDatas;
+    [SerializeField, ReadOnly] protected InteractManager interactManager;
 
-
-    // For Optimization
-    private void OnValidate()
-    {
-        SetRef();
-    }
-
-    private void SetRef()
-    {
-        if (!canvasManager)
-        {
-            canvasManager = CanvasManager.Instance;
-        }
-    }
 }

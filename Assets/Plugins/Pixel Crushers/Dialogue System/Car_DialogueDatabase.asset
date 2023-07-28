@@ -481,7 +481,7 @@ MonoBehaviour:
       isGroup: 0
       nodeColor: 
       delaySimStatus: 0
-      falseConditionAction: 
+      falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks:
       - originConversationID: 23
@@ -897,7 +897,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: OpenSaleUI()
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1377,8 +1377,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 7.984328, y: 6.1174054}
-    canvasZoom: 0.73000026
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.82000023
   - id: 24
     fields:
     - title: Title

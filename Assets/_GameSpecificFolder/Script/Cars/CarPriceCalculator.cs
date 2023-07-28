@@ -31,23 +31,23 @@ public class CarPriceCalculator : MonoBehaviour
     private float DamagePriceCalculate()
     {
         priceHelper = carPropertiesScriptableObject.CarMarketPrice
-            * (carPropertiesScriptableObject.DamageValue) * gameDatas.DamageFactor;
+            * (carPropertiesScriptableObject.DamageValue) * gameDatas.carPriceFactors.DamageFactor;
         return priceHelper;
     }
     private float PaintPriceCalculate()
     {
         priceHelper = carPropertiesScriptableObject.CarMarketPrice
-            * (carPropertiesScriptableObject.PaintValue) * gameDatas.PaintFactor;
+            * (carPropertiesScriptableObject.PaintValue) * gameDatas.carPriceFactors.PaintFactor;
         return priceHelper;
     }
     private float SpeedPriceCalculate()
     {
-        priceHelper = carPropertiesScriptableObject.SpeedValue * gameDatas.SpeedFactor;
+        priceHelper = carPropertiesScriptableObject.SpeedValue * gameDatas.carPriceFactors.SpeedFactor;
         return priceHelper;
     }
     private float TorqueSpeedPriceCalculate()
     {
-        priceHelper = carPropertiesScriptableObject.Torquevalue * gameDatas.TorqueFactor;
+        priceHelper = carPropertiesScriptableObject.Torquevalue * gameDatas.carPriceFactors.TorqueFactor;
         return priceHelper;
     }
 

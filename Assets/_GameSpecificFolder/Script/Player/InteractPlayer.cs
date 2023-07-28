@@ -10,6 +10,8 @@ public class InteractPlayer : MonoBehaviour
     private float rayLength = 2;
     private RaycastHit hit;
     private bool isActiveInteractPromptE; // For Optimization
+    private IInteractable globalInteractableObject;
+
 
 
     private void FixedUpdate()
@@ -17,15 +19,17 @@ public class InteractPlayer : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, rayLength, layerMask))
         {
-            if (hit.transform.TryGetComponent(out IInteractableObject interactableObject) && !isActiveInteractPromptE)
+            if (hit.transform.TryGetComponent(out IInteractable interactableObject) && !isActiveInteractPromptE)
             {
-                interactableObject.RayTriggerInteractObject();
+                globalInteractableObject = interactableObject;
+                globalInteractableObject.InInteractObject();
                 isActiveInteractPromptE = true;
             }
 
         }
         else if (isActiveInteractPromptE)
         {
+            globalInteractableObject.OutInteractObject();
             canvasManager.DeactiveInteractHelper();
             isActiveInteractPromptE = false;
         }

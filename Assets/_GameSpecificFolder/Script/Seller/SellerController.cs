@@ -1,4 +1,6 @@
+using PixelCrushers;
 using PixelCrushers.DialogueSystem;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +9,20 @@ public class SellerController : MonoBehaviour
 {
 
     private float randomGarbainValue;
-
     private CarPropertiesScriptableObject carPropertiesScriptableObject;
+    [SerializeField, ReadOnly] private DialogueSystemTrigger dialogueSystemTrigger;
+    [SerializeField, ReadOnly] PlayerMouseRotater playerMouseRotater;
+
+    private bool isSaveData;
+
+
+
+    public void StartSellerDialog()
+    {
+        CursorControl.SetCursorActive(true);
+        SetSellerDialog();
+        dialogueSystemTrigger.OnUse();
+    }
 
     public void SetSellerDialog()
     {
@@ -16,26 +30,41 @@ public class SellerController : MonoBehaviour
         //DialogueManager.Instance.DialogueUI.Close();
         //Lua.UnregisterFunction("OpenShowRoom");
 
+        if (isSaveData)
+        {
+            return;
+        }
+        isSaveData = true;
         randomGarbainValue = Random.Range(0.1f, 0.2f);
-        DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
+        //DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
         DialogueLua.SetVariable("CarBargain", true);
-        Lua.RegisterFunction("OpenSaleUI", this, SymbolExtensions.GetMethodInfo(() => OpenSaleUI()));
         Lua.RegisterFunction("BargainBuy", this, SymbolExtensions.GetMethodInfo(() => BargainBuy()));
         Lua.RegisterFunction("DirectBuy", this, SymbolExtensions.GetMethodInfo(() => DirectBuy()));
         Lua.RegisterFunction("SetBargainPrice", this, SymbolExtensions.GetMethodInfo(() => SetBargainPrice()));
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            transform.GetComponent<DialogueSystemTrigger>().OnUse();
-        }
+        DialogueManager.instance.conversationEnded += OnConversationEnd;
     }
 
-    private void OpenSaleUI()
+
+    public void UnRegisterDialog()
     {
-        Debug.Log("OpenSaleUI");
+        if (!isSaveData)
+        {
+            return;
+        }
+        isSaveData = false;
+        Lua.UnregisterFunction("BargainBuy");
+        Lua.UnregisterFunction("DirectBuy");
+        Lua.UnregisterFunction("SetBargainPrice");
+
     }
+
+    public void OnConversationEnd(Transform actor)
+    {
+        playerMouseRotater.enabled = true;
+        CursorControl.SetCursorActive(false);
+        UnRegisterDialog();
+    }
+
     private void BargainBuy()
     {
         Debug.Log("BargainBuy");
@@ -47,8 +76,8 @@ public class SellerController : MonoBehaviour
 
     private void SetBargainPrice()
     {
-        carPropertiesScriptableObject.CarNetPrice -= (int)(carPropertiesScriptableObject.CarNetPrice * randomGarbainValue);
-        DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
+        //carPropertiesScriptableObject.CarNetPrice -= (int)(carPropertiesScriptableObject.CarNetPrice * randomGarbainValue);
+        //DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
     }
 
     private void OnValidate()
@@ -58,6 +87,8 @@ public class SellerController : MonoBehaviour
 
     private void SetRef()
     {
+        dialogueSystemTrigger = GetComponent<DialogueSystemTrigger>();
+        playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
         //carPropertiesScriptableObject = GetComponentInParent<CarProperties>().CarPropertiesScriptableObject;
     }
 }
