@@ -18,8 +18,8 @@ public class CarPropertiesScriptableObject : ScriptableObject
     [Header("OtherProperties")]
     [Range(0f, 100f)]
     [SerializeField] private float suspensionValue = 30; // 0 to 100 values
-    [Range(-1f, 1f)]
-    [SerializeField] private float camberValue = 0; // -1 to 1 values
+    [Range(-10f, 10f)]
+    [SerializeField] private float camberValue = 0; // -10 to 10 values
 
     public float CarNetPrice { get => carNetPrice; set => carNetPrice = value; }
     public float CarMarketPrice { get => carMarketPrice; set => carMarketPrice = value; }

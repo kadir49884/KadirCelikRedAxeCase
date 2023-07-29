@@ -38,6 +38,10 @@ public class GameDatas : ScriptableObject
         public string SellerMessage;
     }
 
+    // "ActiveCarProperties"
+    [HideInInspector] public CarPropertiesScriptableObject ActiveCarProperties;
+
+
 
     [Header("Car List")]
     public List<GameObject> CarList = new List<GameObject>();
@@ -45,7 +49,7 @@ public class GameDatas : ScriptableObject
     [Header("Seller List")]
     public List<GameObject> SellerList = new List<GameObject>();
 
-    
+
 
 
 
@@ -59,7 +63,7 @@ public class GameDatas : ScriptableObject
         carPriceFactors.SpeedFactor = 1;
         carPriceFactors.TorqueFactor = 1;
 
-      
+
 
         interactMessages.CarMessage = "Bin";
         interactMessages.CarNegativeMessage = "Araca Sahip Değilsin";

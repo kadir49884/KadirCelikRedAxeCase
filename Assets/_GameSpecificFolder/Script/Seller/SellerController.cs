@@ -5,39 +5,75 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
 public class SellerController : MonoBehaviour
 {
 
+    [SerializeField, ReadOnly] private DialogueSystemTrigger dialogueSystemTrigger;
     private float randomGarbainValue;
     private CarPropertiesScriptableObject carPropertiesScriptableObject;
-    [SerializeField, ReadOnly] private DialogueSystemTrigger dialogueSystemTrigger;
     private InteractCar interactCar;
-    PlayerMouseRotater playerMouseRotater;
+    private PlayerMouseRotater playerMouseRotater;
+    private PlayerMovement playerMovement;
+    private DataOperations dataOperations;
+    private CarPropertiesUI carPropertiesUI;
 
     private bool isSaveData;
 
     public CarPropertiesScriptableObject CarPropertiesScriptableObject { get => carPropertiesScriptableObject; set => carPropertiesScriptableObject = value; }
 
+    
     private void Awake()
     {
         playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
+        playerMovement = playerMouseRotater.GetComponent<PlayerMovement>();
+        dataOperations = DataOperations.Instance;
+        carPropertiesUI = CarPropertiesUI.Instance;
+        if(carPropertiesUI == null)
+        {
+            DOVirtual.DelayedCall(2, () =>
+            {
+                carPropertiesUI = CarPropertiesUI.Instance;
+            });
+        }
     }
-
+    public void GetCarProperties(Transform getCar)
+    {
+        carPropertiesScriptableObject = getCar.GetComponent<CarProperties>().CarPropertiesScriptableObject;
+        interactCar = getCar.GetComponent<CarManager>().InteractCar;
+    }
 
 
     public void StartSellerDialog()
     {
         CursorControl.SetCursorActive(true);
+        SetCarData();
+        PlayerLock();
         SetSellerDialog();
         dialogueSystemTrigger.OnUse();
+        carPropertiesUI.ShowCarPropertiesPanel();
+    }
+
+    private void SetCarData()
+    {
+        dataOperations.gameDatas.ActiveCarProperties = carPropertiesScriptableObject;
+        carPropertiesUI.SetCarProperties();
+    }
+
+    private void PlayerLock()
+    {
+        playerMouseRotater.enabled = false;
+        playerMovement.enabled = false;
+    }
+    private void PlayerUnLock()
+    {
+        playerMouseRotater.enabled = true;
+        playerMovement.enabled = true;
     }
 
     public void SetSellerDialog()
     {
-        //dialogueSystemTrigger.conversation =  "TenantNormal" ;
-        //DialogueManager.Instance.DialogueUI.Close();
-        //Lua.UnregisterFunction("OpenShowRoom");
 
         if (isSaveData)
         {
@@ -69,7 +105,7 @@ public class SellerController : MonoBehaviour
 
     public void OnConversationEnd(Transform actor)
     {
-        playerMouseRotater.enabled = true;
+        PlayerUnLock();
         CursorControl.SetCursorActive(false);
         UnRegisterDialog();
     }
@@ -103,11 +139,7 @@ public class SellerController : MonoBehaviour
         DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
     }
 
-    public void GetCarProperties(Transform getCar)
-    {
-        carPropertiesScriptableObject = getCar.GetComponent<CarProperties>().CarPropertiesScriptableObject;
-        interactCar = getCar.GetComponent<CarManager>().InteractCar;
-    }
+    
 
     private void OnValidate()
     {

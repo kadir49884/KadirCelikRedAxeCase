@@ -51,7 +51,6 @@ public class DriveManager : Singleton<DriveManager>
     private void SetRef()
     {
         playerTransform = PlayerDriveChecker.Instance.transform;
-        objectManager = ObjectManager.Instance;
         cameraHolderFPS = ObjectManager.Instance.CameraHolderFPS;
     }
 }

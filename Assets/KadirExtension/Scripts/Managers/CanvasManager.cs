@@ -22,7 +22,6 @@ public class CanvasManager : Singleton<CanvasManager>
     {
         interactManager.UnregisterEnterInteractAction(DeactiveInteractHelper);
         canvasGroup.alpha = 0;
-
     }
 
 

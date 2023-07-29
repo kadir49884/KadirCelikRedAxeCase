@@ -7,12 +7,10 @@ public class InteractSeller : BaseInteract, IInteractable
 
     [SerializeField, ReadOnly] private Outlinable outlinable;
     [SerializeField, ReadOnly] private SellerController sellerController;
-    PlayerMouseRotater playerMouseRotater;
 
     private void Awake()
     {
         gameDatas = DataOperations.Instance.gameDatas;
-        playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
         canvasManager = CanvasManager.Instance;
         interactManager = InteractManager.Instance;
     }
@@ -33,7 +31,6 @@ public class InteractSeller : BaseInteract, IInteractable
     public void InteractRun()
     {
         sellerController.StartSellerDialog();
-        playerMouseRotater.enabled = false;
     }
 
 

@@ -24,6 +24,6 @@ public class CarRandomizer : MonoBehaviour
         carPropertiesScriptableObject.SpeedValue = Random.Range(100f, 350f);
         carPropertiesScriptableObject.Torquevalue = Random.Range(100f, 300f);
         carPropertiesScriptableObject.SuspensionValue = Random.Range(0f, 100f);
-        carPropertiesScriptableObject.CamberValue = Random.Range(-1f, 1f);
+        carPropertiesScriptableObject.CamberValue = Random.Range(-10f, 10f);
     }
 }

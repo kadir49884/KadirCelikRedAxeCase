@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7041ec76eb1438e449d1783e9bad1737, type: 3}
-  m_Name: Car_E46New
+  m_Name: M3_E46_2
   m_EditorClassIdentifier: 
-  carNetPrice: 19725
-  carMarketPrice: 17276
-  damageValue: 0.13742578
-  paintValue: 0.1063112
-  speedValue: 179.51144
-  torquevalue: 239.24649
-  suspensionValue: 0.70700645
-  camberValue: -0.039725423
+  carNetPrice: 50000
+  carMarketPrice: 50000
+  damageValue: 1
+  paintValue: 1
+  speedValue: 220
+  torquevalue: 190
+  suspensionValue: 30
+  camberValue: 0

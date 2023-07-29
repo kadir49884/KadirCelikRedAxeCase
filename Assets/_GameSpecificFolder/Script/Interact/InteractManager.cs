@@ -16,17 +16,14 @@ public class InteractManager : Singleton<InteractManager>
         enterInteractAction -= action;
     }
 
-   
+
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && enterInteractAction != null)
         {
-            if (enterInteractAction != null)
-            {
-                enterInteractAction();
-            }
+            enterInteractAction();
         }
     }
 
