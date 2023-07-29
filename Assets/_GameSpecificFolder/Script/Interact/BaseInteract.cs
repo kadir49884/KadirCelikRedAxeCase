@@ -4,8 +4,8 @@ using UnityEngine;
 public class BaseInteract : MonoBehaviour
 {
 
-    [SerializeField, ReadOnly] protected CanvasManager canvasManager;
-    [SerializeField, ReadOnly] protected GameDatas gameDatas;
-    [SerializeField, ReadOnly] protected InteractManager interactManager;
+    protected CanvasManager canvasManager;
+    protected GameDatas gameDatas;
+    protected InteractManager interactManager;
 
 }

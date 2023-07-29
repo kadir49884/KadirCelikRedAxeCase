@@ -4,14 +4,32 @@ using UnityEngine;
 public class InteractCar : BaseInteract, IInteractable
 {
     [SerializeField, ReadOnly] private RCC_CarControllerV3 rCC_CarControllerV3;
-    [SerializeField, ReadOnly] private DriveManager driveManager;
     [SerializeField, ReadOnly] private Transform camPosInCar;
     [SerializeField, ReadOnly] private Transform getOutPos;
+    private DriveManager driveManager;
+    private bool isPlayerCar;
 
+    public bool IsPlayerCar { get => isPlayerCar; set => isPlayerCar = value; }
+
+    private void Awake()
+    {
+        gameDatas = DataOperations.Instance.gameDatas;
+        driveManager = DriveManager.Instance;
+        canvasManager = CanvasManager.Instance;
+        interactManager = InteractManager.Instance;
+    }
     public void InInteractObject()
     {
-        canvasManager.ActiveInteractHelper(gameDatas.interactMessages.CarMessage);
-        interactManager.RegisterEnterInteractAction(EnterInteract);
+        if(IsPlayerCar)
+        {
+            canvasManager.ActiveInteractHelper(gameDatas.interactMessages.CarMessage);
+            interactManager.RegisterEnterInteractAction(EnterInteract);
+        }
+        else
+        {
+            canvasManager.ActiveInteractHelper(gameDatas.interactMessages.CarNegativeMessage);
+        }
+
     }
 
     public void OutInteractObject()
@@ -21,6 +39,7 @@ public class InteractCar : BaseInteract, IInteractable
 
     public void EnterInteract()
     {
+
         if (!rCC_CarControllerV3.enabled)
         {
             Debug.Log("EnterInteractCar");
@@ -49,10 +68,7 @@ public class InteractCar : BaseInteract, IInteractable
         rCC_CarControllerV3 = transform.parent.GetComponent<RCC_CarControllerV3>();
         camPosInCar = transform.parent.GetComponentInChildren<CameraPosInCar>().transform;
         getOutPos = transform.parent.GetComponentInChildren<GetOutPosCar>().transform;
-        driveManager = DriveManager.Instance;
-        canvasManager = CanvasManager.Instance;
-        interactManager = InteractManager.Instance;
-        gameDatas = DataOperations.Instance.gameDatas;
+        
     }
 
 

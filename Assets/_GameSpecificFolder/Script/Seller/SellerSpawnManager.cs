@@ -10,7 +10,7 @@ public class SellerSpawnManager : Singleton<SellerSpawnManager>
 
     [SerializeField, ReadOnly] private GameDatas gameDatas;
 
-    public void InstantiateSeller(Vector3 spawnPos, Quaternion getQuaternion)
+    public void InstantiateSeller(Transform getSpawnTransform, Transform carTransform)
     {
         if (sellerCounter >= gameDatas.SellerList.Count)
         {
@@ -18,8 +18,9 @@ public class SellerSpawnManager : Singleton<SellerSpawnManager>
         }
 
         instantiateHelper = Instantiate(gameDatas.SellerList[sellerCounter]);
-        instantiateHelper.transform.position = spawnPos;
-        instantiateHelper.transform.rotation = getQuaternion;
+        instantiateHelper.transform.position = getSpawnTransform.position;
+        instantiateHelper.transform.rotation = getSpawnTransform.rotation;
+        instantiateHelper.GetComponent<SellerController>().GetCarProperties(carTransform);
         sellerCounter++;
     }
 

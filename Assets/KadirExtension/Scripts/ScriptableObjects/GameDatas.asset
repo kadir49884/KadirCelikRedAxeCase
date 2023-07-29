@@ -15,18 +15,19 @@ MonoBehaviour:
   carPriceFactors:
     DamageFactor: 0.5
     PaintFactor: 0.3
-    SpeedFactor: 10
-    TorqueFactor: 10
+    SpeedFactor: 1
+    TorqueFactor: 1
   interactMessages:
     CarMessage: Bin
-    SellerMessage: "Konu\u015F"
+    CarNegativeMessage: "Araca Sahip De\u011Filsin"
+    SellerMessage: Konus
   CarList:
-  - {fileID: 8573549319431884798, guid: f5b24270dd3a52e4180206467601e919, type: 3}
-  - {fileID: 4493774594652649359, guid: 8493f575c4fc2c341827f5191d376174, type: 3}
-  - {fileID: 5712088508789026359, guid: a333afaa2016d504aa0831cf3544672c, type: 3}
-  - {fileID: 2533337409777661332, guid: 9a667d070a973084e998d8667e8d2818, type: 3}
+  - {fileID: 6832199047911268537, guid: 37c8e46848e67a04a8b746435d14bea1, type: 3}
+  - {fileID: 8073164722738443180, guid: 3516837726987674597f740c167da6e2, type: 3}
+  - {fileID: 1832206287897531407, guid: d14a6d4a4c83e59409cf500fa4dc1fc6, type: 3}
+  - {fileID: 22686499428269675, guid: e309ca4fb65139d47bf0599cf3e0a1ae, type: 3}
   SellerList:
   - {fileID: 7246151956043379839, guid: cf443103438b7a345961d419faa5b8ee, type: 3}
-  - {fileID: 3195181349369120197, guid: a6d933ce9ddd04743a89ff82203ad7ed, type: 3}
-  - {fileID: 6344244106300265744, guid: 917eceb1456e4d34fad8b304e9997390, type: 3}
-  - {fileID: 979722113537363321, guid: 1cb05531e7218ae4c9a27eb3df06afbf, type: 3}
+  - {fileID: 2221793942190808503, guid: a6d933ce9ddd04743a89ff82203ad7ed, type: 3}
+  - {fileID: 7091798213618528166, guid: 917eceb1456e4d34fad8b304e9997390, type: 3}
+  - {fileID: 9219486581584915055, guid: 1cb05531e7218ae4c9a27eb3df06afbf, type: 3}

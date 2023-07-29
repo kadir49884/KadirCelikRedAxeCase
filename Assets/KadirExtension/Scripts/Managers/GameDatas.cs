@@ -34,6 +34,7 @@ public class GameDatas : ScriptableObject
     public class InteractMessages
     {
         public string CarMessage;
+        public string CarNegativeMessage;
         public string SellerMessage;
     }
 
@@ -53,16 +54,23 @@ public class GameDatas : ScriptableObject
     {
         Debug.Log("GameData Reset");
 
-        carPriceFactors.DamageFactor = 1;
-        carPriceFactors.PaintFactor = 1;
+        carPriceFactors.DamageFactor = 0.5f;
+        carPriceFactors.PaintFactor = 0.3f;
         carPriceFactors.SpeedFactor = 1;
         carPriceFactors.TorqueFactor = 1;
 
-        CarList.Clear();
-        SellerList.Clear();
+      
 
         interactMessages.CarMessage = "Bin";
+        interactMessages.CarNegativeMessage = "Araca Sahip Değilsin";
         interactMessages.SellerMessage = "Konus";
 
     }
+    [Button]
+    public void ResetListData()
+    {
+        CarList.Clear();
+        SellerList.Clear();
+    }
+
 }

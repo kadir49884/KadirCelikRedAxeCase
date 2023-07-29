@@ -7,7 +7,11 @@ public class CarManager : MonoBehaviour
 {
     [SerializeField, ReadOnly] private CarRandomizer carRandomizer;
     [SerializeField, ReadOnly] private CarPriceCalculator carPriceCalculator;
-    [SerializeField, ReadOnly] private SellerController sellerController;
+    [SerializeField, ReadOnly] private InteractCar interactCar;
+
+    public InteractCar InteractCar { get => interactCar; set => interactCar = value; }
+
+    //[SerializeField, ReadOnly] private SellerController sellerController;
 
 
     private void Start()
@@ -28,6 +32,7 @@ public class CarManager : MonoBehaviour
     {
         carRandomizer = GetComponent<CarRandomizer>();
         carPriceCalculator = GetComponent<CarPriceCalculator>();
-        sellerController = GetComponentInChildren<SellerController>();
+        InteractCar = GetComponentInChildren<InteractCar>();
+        //sellerController = GetComponentInChildren<SellerController>();
     }
 }

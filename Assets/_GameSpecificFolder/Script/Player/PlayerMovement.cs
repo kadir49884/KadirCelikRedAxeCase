@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded { get; private set; }
 
     private Vector3 moveDirection;
-    private Rigidbody rb;
+    [SerializeField, ReadOnly] private Rigidbody rb;
 
 
 

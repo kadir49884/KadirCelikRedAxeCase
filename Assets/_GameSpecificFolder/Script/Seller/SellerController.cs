@@ -1,3 +1,4 @@
+using DG.Tweening;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using Sirenix.OdinInspector;
@@ -11,9 +12,17 @@ public class SellerController : MonoBehaviour
     private float randomGarbainValue;
     private CarPropertiesScriptableObject carPropertiesScriptableObject;
     [SerializeField, ReadOnly] private DialogueSystemTrigger dialogueSystemTrigger;
-    [SerializeField, ReadOnly] PlayerMouseRotater playerMouseRotater;
+    private InteractCar interactCar;
+    PlayerMouseRotater playerMouseRotater;
 
     private bool isSaveData;
+
+    public CarPropertiesScriptableObject CarPropertiesScriptableObject { get => carPropertiesScriptableObject; set => carPropertiesScriptableObject = value; }
+
+    private void Awake()
+    {
+        playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
+    }
 
 
 
@@ -36,7 +45,7 @@ public class SellerController : MonoBehaviour
         }
         isSaveData = true;
         randomGarbainValue = Random.Range(0.1f, 0.2f);
-        //DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
+        DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
         DialogueLua.SetVariable("CarBargain", true);
         Lua.RegisterFunction("BargainBuy", this, SymbolExtensions.GetMethodInfo(() => BargainBuy()));
         Lua.RegisterFunction("DirectBuy", this, SymbolExtensions.GetMethodInfo(() => DirectBuy()));
@@ -68,16 +77,36 @@ public class SellerController : MonoBehaviour
     private void BargainBuy()
     {
         Debug.Log("BargainBuy");
+        interactCar.IsPlayerCar = true;
+        DOVirtual.DelayedCall(2, () =>
+        {
+            gameObject.SetActive(false);
+
+        });
     }
     private void DirectBuy()
     {
         Debug.Log("DirectBuy");
+        interactCar.IsPlayerCar = true;
+        DOVirtual.DelayedCall(2, () =>
+        {
+            gameObject.SetActive(false);
+
+        });
+
     }
+
 
     private void SetBargainPrice()
     {
-        //carPropertiesScriptableObject.CarNetPrice -= (int)(carPropertiesScriptableObject.CarNetPrice * randomGarbainValue);
-        //DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
+        carPropertiesScriptableObject.CarNetPrice -= (int)(carPropertiesScriptableObject.CarNetPrice * randomGarbainValue);
+        DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
+    }
+
+    public void GetCarProperties(Transform getCar)
+    {
+        carPropertiesScriptableObject = getCar.GetComponent<CarProperties>().CarPropertiesScriptableObject;
+        interactCar = getCar.GetComponent<CarManager>().InteractCar;
     }
 
     private void OnValidate()
@@ -88,7 +117,6 @@ public class SellerController : MonoBehaviour
     private void SetRef()
     {
         dialogueSystemTrigger = GetComponent<DialogueSystemTrigger>();
-        playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
         //carPropertiesScriptableObject = GetComponentInParent<CarProperties>().CarPropertiesScriptableObject;
     }
 }

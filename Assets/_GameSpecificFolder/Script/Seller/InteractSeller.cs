@@ -7,9 +7,15 @@ public class InteractSeller : BaseInteract, IInteractable
 
     [SerializeField, ReadOnly] private Outlinable outlinable;
     [SerializeField, ReadOnly] private SellerController sellerController;
-    [SerializeField, ReadOnly] PlayerMouseRotater playerMouseRotater;
+    PlayerMouseRotater playerMouseRotater;
 
-
+    private void Awake()
+    {
+        gameDatas = DataOperations.Instance.gameDatas;
+        playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
+        canvasManager = CanvasManager.Instance;
+        interactManager = InteractManager.Instance;
+    }
 
     public void InInteractObject()
     {
@@ -42,10 +48,8 @@ public class InteractSeller : BaseInteract, IInteractable
     {
         outlinable = transform.parent.GetComponent<Outlinable>();
         sellerController = transform.parent.GetComponent<SellerController>();
-        canvasManager = CanvasManager.Instance;
-        interactManager = InteractManager.Instance;
-        gameDatas = DataOperations.Instance.gameDatas;
-        playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
+        
+        
     }
 
 }
