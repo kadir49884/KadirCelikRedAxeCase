@@ -10,8 +10,6 @@ public class PlayerMouseRotater : MonoBehaviour
 
     private bool isDriveAcitve;
 
-
-
     [SerializeField] private float sensX = 100f;
     [SerializeField] private float sensY = 100f;
 

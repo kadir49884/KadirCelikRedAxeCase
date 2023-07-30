@@ -19,7 +19,7 @@ public class DriveManager : Singleton<DriveManager>
         playerTransform.transform.parent = getCar;
         playerTransform.gameObject.SetActive(false);
         cameraHolderFPS.parent = cameraPosInCar;
-        objectManager.Rcc_Camera.cameraMode = RCC_Camera.CameraMode.FPS;
+        objectManager.Rcc_Camera.ChangeCamera(RCC_Camera.CameraMode.FPS);
         objectManager.RccCameraObject.gameObject.SetActive(true);
 
     }

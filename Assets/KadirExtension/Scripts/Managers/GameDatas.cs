@@ -27,7 +27,7 @@ public class GameDatas : ScriptableObject
 
 
 
-    [Header("InteractMessage")]
+    [Header("Messages")]
     public InteractMessages interactMessages;
 
     [Serializable]
@@ -37,6 +37,16 @@ public class GameDatas : ScriptableObject
         public string CarNegativeMessage;
         public string SellerMessage;
     }
+
+    public OfferMessage offerMessage;
+
+    [Serializable]
+    public class OfferMessage
+    {
+        public string AcceptedMessage;
+        public string RejectedMessage;
+    }
+
 
     // "ActiveCarProperties"
     [HideInInspector] public CarPropertiesScriptableObject ActiveCarProperties;
@@ -68,6 +78,9 @@ public class GameDatas : ScriptableObject
         interactMessages.CarMessage = "Bin";
         interactMessages.CarNegativeMessage = "Araca Sahip Değilsin";
         interactMessages.SellerMessage = "Konus";
+
+        offerMessage.AcceptedMessage = "Satıcı fiyatı onayladı. Tebrikler";
+        offerMessage.RejectedMessage = "Satıcı fiyatı onaylamadı";
 
     }
     [Button]

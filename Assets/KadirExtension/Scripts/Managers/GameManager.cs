@@ -95,19 +95,13 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-#if UNITY_EDITOR
+
     private void Update()
 	{
         if (Input.GetKeyDown(KeyCode.R))
             RestartLevel();
-
-        if (Input.GetKeyDown(KeyCode.N))
-			NextLevel();
-
-		if (Input.GetKeyDown(KeyCode.B))
-			PreviousLevel();
 	}
-#endif
+
 
 }
 

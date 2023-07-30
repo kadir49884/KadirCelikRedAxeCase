@@ -21,6 +21,10 @@ MonoBehaviour:
     CarMessage: Bin
     CarNegativeMessage: "Araca Sahip De\u011Filsin"
     SellerMessage: Konus
+  offerMessage:
+    AcceptedMessage: "Sat\u0131c\u0131 fiyat\u0131 onaylad\u0131. Tebrikler"
+    RejectedMessage: "Sat\u0131c\u0131 fiyat\u0131 onaylamad\u0131"
+  ActiveCarProperties: {fileID: 0}
   CarList:
   - {fileID: 6832199047911268537, guid: 37c8e46848e67a04a8b746435d14bea1, type: 3}
   - {fileID: 8073164722738443180, guid: 3516837726987674597f740c167da6e2, type: 3}

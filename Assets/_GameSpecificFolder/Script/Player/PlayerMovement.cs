@@ -42,9 +42,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, ReadOnly] private Rigidbody rb;
 
 
-
-    
-
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);

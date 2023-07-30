@@ -18,8 +18,7 @@ public class SellerSpawnManager : Singleton<SellerSpawnManager>
         }
 
         instantiateHelper = Instantiate(gameDatas.SellerList[sellerCounter]);
-        instantiateHelper.transform.position = getSpawnTransform.position;
-        instantiateHelper.transform.rotation = getSpawnTransform.rotation;
+        instantiateHelper.transform.SetPositionAndRotation(getSpawnTransform.position, getSpawnTransform.rotation);
         instantiateHelper.GetComponent<SellerController>().GetCarProperties(carTransform);
         sellerCounter++;
     }

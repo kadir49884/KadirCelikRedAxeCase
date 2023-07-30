@@ -124,7 +124,7 @@ public class RCC_Camera : MonoBehaviour {
     public GameObject pivot;        // Pivot center of the camera. Used for making offsets and collision movements.
 
     // Camera Modes.
-    public enum CameraMode { TPS, FPS, WHEEL, FIXED, CINEMATIC, TOP }
+    public enum CameraMode { FPS, TPS, WHEEL, FIXED, CINEMATIC, TOP }
     public CameraMode cameraMode = CameraMode.TPS;
     private CameraMode lastCameraMode = CameraMode.TPS;
 
@@ -385,6 +385,15 @@ public class RCC_Camera : MonoBehaviour {
         // Run the corresponding method with choosen camera mode.
         switch (cameraMode) {
 
+            case CameraMode.FPS:
+
+                if (useOrbitInHoodCameraMode)
+                    ORBIT();
+
+                FPS();
+
+                break;
+
             case CameraMode.TPS:
 
                 if (useOrbitInTPSCameraMode)
@@ -394,14 +403,7 @@ public class RCC_Camera : MonoBehaviour {
 
                 break;
 
-            case CameraMode.FPS:
-
-                if (useOrbitInHoodCameraMode)
-                    ORBIT();
-
-                FPS();
-
-                break;
+            
 
             case CameraMode.WHEEL:
                 WHEEL();
@@ -505,15 +507,17 @@ public class RCC_Camera : MonoBehaviour {
 
         switch (cameraSwitchCount) {
 
-            case 0:
-                cameraMode = CameraMode.TPS;
-                break;
+            
 
-            case 1:
+            case 0:
                 if (useHoodCameraMode && cameraTarget.HoodCamera)
                     cameraMode = CameraMode.FPS;
                 else
                     ChangeCamera();
+                break;
+
+            case 1:
+                cameraMode = CameraMode.TPS;
                 break;
 
             case 2:

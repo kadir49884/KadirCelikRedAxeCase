@@ -23,14 +23,14 @@ public class SellerController : MonoBehaviour
 
     public CarPropertiesScriptableObject CarPropertiesScriptableObject { get => carPropertiesScriptableObject; set => carPropertiesScriptableObject = value; }
 
-    
+
     private void Awake()
     {
         playerMouseRotater = PlayerDriveChecker.Instance.GetComponent<PlayerMouseRotater>();
         playerMovement = playerMouseRotater.GetComponent<PlayerMovement>();
         dataOperations = DataOperations.Instance;
         carPropertiesUI = CarPropertiesUI.Instance;
-        if(carPropertiesUI == null)
+        if (carPropertiesUI == null)
         {
             DOVirtual.DelayedCall(2, () =>
             {
@@ -53,6 +53,7 @@ public class SellerController : MonoBehaviour
         SetSellerDialog();
         dialogueSystemTrigger.OnUse();
         carPropertiesUI.ShowCarPropertiesPanel();
+
     }
 
     private void SetCarData()
@@ -103,14 +104,24 @@ public class SellerController : MonoBehaviour
 
     }
 
-    public void OnConversationEnd(Transform actor)
+    public void ConversationFinished()
     {
+        DialogueManager.Instance.StopConversation(); 
+        DialogueManager.Instance.DialogueUI.Close();
         PlayerUnLock();
         CursorControl.SetCursorActive(false);
         UnRegisterDialog();
+
     }
 
-    private void BargainBuy()
+    public void OnConversationEnd(Transform actor)
+    {
+        ConversationFinished();
+    }
+
+  
+
+    public void BargainBuy()
     {
         Debug.Log("BargainBuy");
         interactCar.IsPlayerCar = true;
@@ -120,7 +131,7 @@ public class SellerController : MonoBehaviour
 
         });
     }
-    private void DirectBuy()
+    public void DirectBuy()
     {
         Debug.Log("DirectBuy");
         interactCar.IsPlayerCar = true;
@@ -135,11 +146,14 @@ public class SellerController : MonoBehaviour
 
     private void SetBargainPrice()
     {
-        carPropertiesScriptableObject.CarNetPrice -= (int)(carPropertiesScriptableObject.CarNetPrice * randomGarbainValue);
-        DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice);
+
+        DialogueLua.SetVariable("CarSellPrice", carPropertiesScriptableObject.CarNetPrice
+            - (int)(carPropertiesScriptableObject.CarNetPrice * randomGarbainValue));
+
+        OfferController.Instance.ShowOfferPanel(this);
     }
 
-    
+
 
     private void OnValidate()
     {
